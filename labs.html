@@ -1,61 +1,180 @@
-<html lang="en">
-  <head>
-    <meta charset="utf8">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>micg // Cool Things</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="m.css">
-<style>:is([id*='google_ads_iframe'],[id*='taboola-'],.taboolaHeight,.taboola-placeholder,#top-ad,#credential_picker_container,#credentials-picker-container,#credential_picker_iframe,[id*='google-one-tap-iframe'],#google-one-tap-popup-container,.google-one-tap__module,.google-one-tap-modal-div,#amp_floatingAdDiv,#ez-content-blocker-container) {display:none!important;min-height:0!important;height:0!important;}</style>
-  </head>
-<body>
+    <title>modus infinite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Custom scrollbar for a more integrated feel (optional) */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a202c; /* bg-gray-800 */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2563eb; /* bg-blue-600 */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #1d4ed8; /* bg-blue-700 */
+        }
+        /* Ensure preformatted text wraps correctly */
+        pre code {
+            white-space: pre-wrap !important; /* Override any user-agent default */
+            word-break: break-all; /* Break long strings if necessary */
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-blue': '#2563eb', // Example blue
+                        'brand-lightblue': '#60a5fa',
+                        'brand-dark': '#0f172a', // A very dark gray/off-black
+                        'brand-gray': '#1e293b',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'], // A nice clean font
+                    },
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-brand-dark text-gray-200 font-sans antialiased">
 
-    <nav class="navbar navbar-expand-lg">
-        <a class="navbar-brand" href="#">
-            <img src="mxinfinity.png" alt="M* Infinity Logo">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon" style="color:white;">
-		<i class="fas fa-bars"></i>
-	    </span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#" onclick="showContent('contact')">
-                        <i class="fas fa-envelope"></i> Contact
+    <!-- Navigation Bar -->
+    <nav class="bg-brand-gray/80 backdrop-blur-md shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#home" class="flex-shrink-0">
+                        <!-- Make sure mxinfinity.png is in the same directory or update path -->
+                        <img class="h-10 w-auto" src="modusinfinite.jpeg" alt="M* Infinity Logo">
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" onclick="showContent('socialmedia')">
-                        <i class="fas fa-link"></i> Interact
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" onclick="showContent('labs')">
-                        <i class="fas fa-flask"></i> Labs
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" onclick="showContent('keys')">
-                        <i class="fas fa-key"></i> Keys
-                    </a>
-                </li>
-            </ul>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#contact" class="text-gray-300 hover:bg-brand-blue hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300"><i class="fas fa-envelope fa-fw mr-1"></i> Contact</a>
+                        <a href="#interact" class="text-gray-300 hover:bg-brand-blue hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300"><i class="fas fa-link fa-fw mr-1"></i> Interact</a>
+                        <a href="#labs" class="text-gray-300 hover:bg-brand-blue hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300"><i class="fas fa-flask fa-fw mr-1"></i> Labs</a>
+                        <a href="#keys" class="text-gray-300 hover:bg-brand-blue hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300"><i class="fas fa-key fa-fw mr-1"></i> Keys</a>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <!-- Mobile menu button -->
+                    <button type="button" id="mobile-menu-button" class="bg-brand-gray inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-brand-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-brand-dark focus:ring-white transition-colors duration-300" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars fa-fw text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu, show/hide based on menu state. -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#contact" class="text-gray-300 hover:bg-brand-blue hover:text-white block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300"><i class="fas fa-envelope fa-fw mr-2"></i>Contact</a>
+                <a href="#interact" class="text-gray-300 hover:bg-brand-blue hover:text-white block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300"><i class="fas fa-link fa-fw mr-2"></i>Interact</a>
+                <a href="#labs" class="text-gray-300 hover:bg-brand-blue hover:text-white block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300"><i class="fas fa-flask fa-fw mr-2"></i>Labs</a>
+                <a href="#keys" class="text-gray-300 hover:bg-brand-blue hover:text-white block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300"><i class="fas fa-key fa-fw mr-2"></i>Keys</a>
+            </div>
         </div>
     </nav>
 
-    <div class="content visible" id="content">
-		<div class="container my-4">
- 		 <h1>Social Media GPG Public Key</h1>
- 		 <div class="card">
- 		   <div class="card-header bg-dark text-light d-flex justify-content-between align-items-center">
-		      <span>Public Key</span>
- 		     <button class="btn btn-sm btn-outline-secondary" onclick="copyToClipboard('gpg-key')">
-		        <i class="bi bi-clipboard"></i> Copy
-		      </button>
- 		   </div>
-		    <pre class="card-body bg-dark text-light p-3 mb-0 overflow-auto" style="max-height: 400px; font-family: monospace; font-size: 0.9rem; white-space: pre-wrap;"><code id="gpg-key">
+    <!-- Hero/Home Section -->
+    <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center bg-cover bg-center" style="background-image: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.95)), url('https://source.unsplash.com/random/1600x900/?abstract,technology,dark');">
+        <div class="container mx-auto px-4 py-16">
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">
+                <span class="text-brand-lightblue">micg</span> modus infinite cyber grounds
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-10 max-w-2xl mx-auto">
+                Exploring the digital frontier. Welcome to my personal space for projects, keys, and thoughts.
+            </p>
+            <a href="#keys" class="bg-brand-blue hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition-colors duration-300 shadow-lg">
+                View My Keys <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 md:py-24 bg-brand-dark">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-brand-lightblue">Get In Touch</h2>
+            <div class="w-20 h-1 bg-brand-blue mx-auto mb-12"></div>
+            <p class="text-lg text-gray-300 mb-8 max-w-xl mx-auto">
+                Have a question or want to collaborate? Feel free to reach out.
+            </p>
+            <a href="mailto:mrinfinity@micg.net" class="inline-block bg-brand-blue hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg text-lg transition-colors duration-300 shadow-md">
+                <i class="fas fa-paper-plane mr-2"></i> Email Me: contact@micg.net
+            </a>
+        </div>
+    </section>
+
+    <!-- Interact (Social Media) Section -->
+    <section id="interact" class="py-16 md:py-24 bg-brand-gray">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-brand-lightblue">Interact & Connect</h2>
+            <div class="w-20 h-1 bg-brand-blue mx-auto mb-12"></div>
+            <p class="text-lg text-gray-300 mb-8 max-w-xl mx-auto">
+                Find me on other platforms or check out my profiles.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://github.com/mrinfinityjs" target="_blank" rel="noopener noreferrer" class="bg-gray-700 hover:bg-gray-600 text-white font-medium py-3 px-5 rounded-lg transition-colors duration-300 flex items-center space-x-2 text-lg">
+                    <i class="fab fa-github"></i> <span>GitHub</span>
+                </a>
+                <!-- Add more social links as needed -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Labs Section -->
+    <section id="labs" class="py-16 md:py-24 bg-brand-dark">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-brand-lightblue">modus infinite</h2>
+            <div class="w-20 h-1 bg-brand-blue mx-auto mb-12"></div>
+            <p class="text-lg text-gray-300 mb-8 max-w-xl mx-auto">
+                Experimental projects, code snippets, and other digital curiosities. This section is always evolving.
+            </p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+                <div class="bg-brand-gray p-6 rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300">
+                    <i class="fas fa-cogs text-3xl text-brand-lightblue mb-4"></i>
+                    <h3 class="text-xl font-semibold text-white mb-2">Genny: Alpha</h3>
+                    <p class="text-gray-400">A discord management bot for communities to watch movies together, and other collaboration.</p>
+                </div>
+                <div class="bg-brand-gray p-6 rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300">
+                    <i class="fas fa-rocket text-3xl text-brand-lightblue mb-4"></i>
+                    <h3 class="text-xl font-semibold text-white mb-2">pgpsrvc</h3>
+                    <p class="text-gray-400">A secure TLS (certbot/autogen self signed) that reloads the certificates on expirery. Includes PGP Signed API Commands, Redis-Like Storage, Server, and Client.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Keys Section -->
+    <section id="keys" class="py-16 md:py-24 bg-brand-gray">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-brand-lightblue">Public Keys</h2>
+            <div class="w-20 h-1 bg-brand-blue mx-auto mb-12"></div>
+
+            <div class="max-w-3xl mx-auto space-y-12">
+                <!-- GPG Key Card -->
+                <div class="bg-brand-dark shadow-xl rounded-lg overflow-hidden">
+                    <div class="px-6 py-4 bg-gray-800 flex justify-between items-center">
+                        <h3 class="text-xl font-semibold text-brand-lightblue">Social Media GPG Public Key</h3>
+                        <button
+                            onclick="copyToClipboard('gpg-key-content', this)"
+                            class="bg-brand-blue hover:bg-blue-700 text-white text-sm py-2 px-4 rounded-md transition-colors duration-300 flex items-center">
+                            <i class="fas fa-copy mr-2"></i> Copy
+                        </button>
+                    </div>
+                    <div class="p-1 bg-brand-dark">
+                        <pre class="bg-gray-900 text-gray-300 p-4 text-xs sm:text-sm leading-relaxed overflow-x-auto max-h-96 rounded-b-md"><code id="gpg-key-content">
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
 mDMEaB5kgRYJKwYBBAHaRw8BAQdAWdqqSz6fpEbBhVrXBlJJcBBet9dfrdJ085VV
@@ -83,29 +202,100 @@ eUBtaWNnLm5ldAAKCRCvst1yKeQ1EpU2AQCyV6E0w+B/7uRgW5SHENKvHKMl/CEG
 6wxxfoX2DhjPYQEAp221SLXSfx7uNay/AUr+6J6mztVKRA/ocY8QTpvTPg0=
 =85s+
 -----END PGP SIGNATURE-----
+                        </code></pre>
+                    </div>
+                </div>
 
-
-		  </code></pre></div><code id="gpg-key">
-		</code></div><code id="gpg-key">
-                <div class="container my-4">
-                 <h1>Public SSH Key</h1>
-                 <div class="card">
-                   <div class="card-header bg-dark text-light d-flex justify-content-between align-items-center">
-                      <span>Public Key</span>
-                     <button class="btn btn-sm btn-outline-secondary" onclick="copyToClipboard('ssh-key')">
-                        <i class="bi bi-clipboard"></i> Copy
-                      </button>
-                   </div>
-                    <pre class="card-body bg-dark text-light p-3 mb-0 overflow-auto" style="max-height: 400px; font-family: monospace; font-size: 0.9rem; white-space: pre-wrap;"><code id="ssh-key">
+                <!-- SSH Key Card -->
+                <div class="bg-brand-dark shadow-xl rounded-lg overflow-hidden">
+                    <div class="px-6 py-4 bg-gray-800 flex justify-between items-center">
+                        <h3 class="text-xl font-semibold text-brand-lightblue">Public SSH Key</h3>
+                        <button
+                            onclick="copyToClipboard('ssh-key-content', this)"
+                            class="bg-brand-blue hover:bg-blue-700 text-white text-sm py-2 px-4 rounded-md transition-colors duration-300 flex items-center">
+                            <i class="fas fa-copy mr-2"></i> Copy
+                        </button>
+                    </div>
+                    <div class="p-1 bg-brand-dark">
+                         <pre class="bg-gray-900 text-gray-300 p-4 text-xs sm:text-sm leading-relaxed overflow-x-auto max-h-60 rounded-b-md"><code id="ssh-key-content">
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDJdQVLoWKb1vfn13N3P1PCZSEZqC+VtPhAB1xfY2FHE mrinfinity public
-                  </code></pre></div><code id="ssh-key">
-                </code></div><code id="ssh-key">
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            </code></code></div>
+    <!-- Footer -->
+    <footer class="bg-brand-dark border-t border-brand-gray py-8 text-center">
+        <div class="container mx-auto px-4">
+            <img src="modusinfinite.jpeg" alt="M* Infinity Logo" class="h-12 w-auto mx-auto mb-4 opacity-75">
+            <p class="text-gray-400 text-sm">
+                © <span id="currentYear"></span> micg.net All rights reserved.
+            </p>
+            <p class="text-gray-500 text-xs mt-2">
+                Built with <a href="https://tailwindcss.com" target="_blank" rel="noopener" class="hover:text-brand-lightblue">Tailwind CSS</a> & <i class="fas fa-heart text-red-500"></i>
+            </p>
+        </div>
+    </footer>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Mobile menu toggle
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = mobileMenu.querySelectorAll('a');
+
+        menuButton.addEventListener('click', () => {
+            const expanded = menuButton.getAttribute('aria-expanded') === 'true' || false;
+            menuButton.setAttribute('aria-expanded', !expanded);
+            mobileMenu.classList.toggle('hidden');
+            // Toggle icon
+            const icon = menuButton.querySelector('i');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
+
+        // Close mobile menu when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                    menuButton.setAttribute('aria-expanded', 'false');
+                    const icon = menuButton.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+
+        // Copy to clipboard function
+        function copyToClipboard(elementId, buttonElement) {
+            const textToCopy = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const originalText = buttonElement.innerHTML; // Store full HTML content
+                buttonElement.innerHTML = '<i class="fas fa-check mr-2"></i> Copied!';
+                buttonElement.classList.add('bg-green-500', 'hover:bg-green-600');
+                buttonElement.classList.remove('bg-brand-blue', 'hover:bg-blue-700');
+
+                setTimeout(() => {
+                    buttonElement.innerHTML = originalText;
+                    buttonElement.classList.remove('bg-green-500', 'hover:bg-green-600');
+                    buttonElement.classList.add('bg-brand-blue', 'hover:bg-blue-700');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                alert('Failed to copy text.');
+            });
+        }
+
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
 
 </body>
 </html>
